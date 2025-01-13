@@ -2,7 +2,7 @@ import pygame as pygame
 
 
 pygame.init()
-screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN) 
+window = pygame.display.set_mode((0, 0), pygame.FULLSCREEN) 
 screen_width, screen_height = pygame.display.Info().current_w, pygame.display.Info().current_h # dimension x et y de l'ecran
 pygame.display.set_caption('mpm testeur') # Titre de la fenetre
 
@@ -13,35 +13,41 @@ blue = (0, 0, 255)
 red = (255, 0, 0)
 
 
-print(f"Screen resolution: {screen_width}x{screen_height}")
 
 def choisir_langue(langue):
     fichiertxt = {"fr": "Langue/francais.txt", "en": "Langue/english.txt"}
     mots = [mot for ligne in open(fichiertxt[langue], "r") for mot in ligne.split()]
 
-class Button:
-    def __init__(self, x, y, width, height, color, text=None):
-        self.rect = pygame.Rect(x, y, width, height)
-        self.color = color
-        self.text = text
+def taille_en_pourcent(X=0, Y=0):
+    return int(screen_width*X*0.01), int(screen_height*Y*0.01)
 
-    def draw(self, surface):
-        pygame.draw.rect(surface, self.color, self.rect)
-        if self.text:
-            font = pygame.font.Font(None, 36)
-            text_surf = font.render(self.text, True, black)
-            text_rect = text_surf.get_rect(center=self.rect.center)
-            surface.blit(text_surf, text_rect)
+# Création du label meilleur_score
+meilleur_score = pygame.Surface(taille_en_pourcent(14, 8))
+meilleur_score.fill(green)
+window.blit(meilleur_score, taille_en_pourcent(1, 1))
 
-    def is_clicked(self, pos):
-        return self.rect.collidepoint(pos)
+# Création du label temps
+temps = pygame.Surface(taille_en_pourcent(15, 10))
+temps.fill(blue)
+window.blit(temps, taille_en_pourcent(83, 30))
 
-button = Button(100, 100, 200, 200, green, "Click me")
+# Création du label mpm_actuel
+mpm_actuel = pygame.Surface(taille_en_pourcent(20, 10))
+mpm_actuel.fill(white)
+window.blit(mpm_actuel, taille_en_pourcent(40, 87))
 
-# loop back (boucle afin de garder la fenetre)
+# Création du bouton exit
+btn_exit_x, btn_exit_y = taille_en_pourcent(97, -1)
+btn_exit_largeur, btn_exit_hauteur = taille_en_pourcent(6, 6)
+pygame.draw.rect(window, red, (btn_exit_x, btn_exit_y, btn_exit_largeur, btn_exit_hauteur))
+
+
+# loop back pour vérifier les évenements clavier
 while True:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            quit()
+    for evenement in pygame.event.get():
+        if evenement.type == pygame.MOUSEBUTTONDOWN and evenement.button == 1:
+            if btn_exit_x <= evenement.pos[0] <= btn_exit_x + btn_exit_largeur and btn_exit_y <= evenement.pos[1] <= btn_exit_y + btn_exit_hauteur:
+                pygame.quit()
+                quit()
         pygame.display.update()
+
