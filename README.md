@@ -13,10 +13,10 @@ l'application et l'enregistrement des records des précedentes sessions)
 #### Essentiel
 - [ ] Créer l'application
     - [ ] Création de l'ui 
-        - [ ] Trouver la bibliothèque python la plus adaptée
+        - [x] Trouver la bibliothèque python la plus adaptée
     - [ ] Algorithme de vérification des erreurs
     - [ ] Algorithme de vérification de la vitesse de frappe
-    - [ ] Trouver une BDD de mots de références
+    - [x] Trouver une BDD de mots de références
     - [ ] Afficher des mots aléatoires de la bdd en gris (= mots à écrire)
     - [ ] Superposer les lettres écrites par l'utilisateur au-dessus (cf monkey type)
 
