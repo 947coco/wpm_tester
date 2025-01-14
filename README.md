@@ -18,7 +18,8 @@ l'application et l'enregistrement des records des précedentes sessions)
     - [ ] Algorithme de vérification de la vitesse de frappe
     - [x] Trouver une BDD de mots de références
     - [ ] Afficher des mots aléatoires de la bdd en gris (= mots à écrire)
-    - [ ] Superposer les lettres écrites par l'utilisateur au-dessus (cf monkey type)
+    - [ ] Changer la couleur de chaque lettre en fonction des fautes de l'utilisateur
+    - [ ] Régler le problème du Alt+Tab
 
 #### Moins essentiel
 - [ ] Sauvegarder les précedents records de l'utilisateur
